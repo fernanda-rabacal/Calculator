@@ -1,0 +1,64 @@
+body {
+  height: 100vh;
+  background-color: rgb(237, 243, 247);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: grid;
+  grid-template-areas: 
+  'display display'
+  'number symbols';
+  grid-template-rows: 30% 1fr;
+  grid-template-columns: 75% 1fr;
+  background-color: rgb(114, 183, 248);
+  width: 400px;
+  height: 500px;
+  border-radius: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+.calc {
+  padding: 5px;
+  border: none;
+  outline: 0;
+  background-color: transparent;
+  font-size: 40px;
+  font-weight: bold;
+  grid-area: display;
+}
+
+.numbers {
+  grid-area: number;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.number, .comma, .equal {
+  margin: 0 4px 4px 0;
+}
+.equal {
+  background-color: rgb(155, 238, 166);
+}
+
+.symbols {
+  grid-area: symbols;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+}
+
+.clean {
+  color: red;
+}
+
+button {
+  width: 90px;
+  font-size: 35px;
+  margin-bottom: 5px;
+}

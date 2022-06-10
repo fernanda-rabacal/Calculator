@@ -29,6 +29,7 @@ button {
   border-radius: 10px;
   margin: 0;
   padding: 10px;
+  box-sizing: border-box;
 }
 
 #res {
@@ -92,3 +93,8 @@ button {
   color: red;
 }
 
+@media(max-width: 700px){
+  body{
+    background-color: black;
+  }
+}

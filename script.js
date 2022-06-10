@@ -23,8 +23,27 @@ symbols.forEach((sym) => sym.addEventListener("click", () =>
 
 const getSymbol = (sym) => {
 
-  const numbersSum = display.value.split(sym).map((item) => parseFloat(item.replace(",", "."))
-  )
+    if(sym === '*'){
+      let symIndex = display.value.indexOf('*')
+      let prevNumber = Number.parseFloat(display.value.replace(",", ".").charAt(symIndex - 1))
+      let posNumber = Number.parseFloat(display.value.replace(",", ".").charAt(symIndex + 1))
+      console.log(prevNumber)
+      let multi = prevNumber * posNumber
+      return display.value.replace(`${prevNumber}*${posNumber}`, multi)
+    }
+    
+    if(sym === '/'){
+      let symIndex = display.value.indexOf('/')
+      let prevNumber = Number.parseFloat(display.value.charAt(symIndex - 1) )
+      let posNumber = Number.parseFloat(display.value.charAt(symIndex + 1) )
+      let divide = prevNumber / posNumber
+      
+      return display.value.replace(`${prevNumber}/${posNumber}`, divide)
+    }
+    
+
+    const numbersSum = display.value.split(sym).map((item) => parseFloat(item.replace(",", ".")))
+
 
   switch(sym) {
     case '+':
@@ -34,31 +53,25 @@ const getSymbol = (sym) => {
     case '-':
       const minus = numbersSum.reduce((prev, current) => prev -= current)
       return minus
-
-    case '/':
-      const divide = numbersSum.reduce((prev, current) => prev /= current)
-      return divide
-    
-    case '*':
-      const multi = numbersSum.reduce((prev, current) => prev *= current)
-      return multi
-  }
-  
+    }
 }
 
 const getOperation = () =>{
   prevOperation.innerHTML = display.value
+  
+  if (display.value.includes('*')){
+    display.value = getSymbol('*') 
+    getOperation()
+  }
+  if (display.value.includes('/')){
+    display.value = getSymbol('/')
+    getOperation()
+  }
   if (display.value.includes('+')){
     display.value = getSymbol('+')
   }
   if (display.value.includes('-')){
     display.value = getSymbol('-')
-  }
-  if (display.value.includes('*')){
-    display.value = getSymbol('*')
-  }
-  if (display.value.includes('/')){
-    display.value = getSymbol('/')
   }
 
 }
